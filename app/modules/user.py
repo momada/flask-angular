@@ -20,6 +20,6 @@ def authentication():
             'Login failed', 401,
             {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
-    result=True
+    result = True
 
     return Response(json.dumps(result), mimetype='application/json')
