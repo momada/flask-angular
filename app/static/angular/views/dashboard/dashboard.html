@@ -1,0 +1,193 @@
+<div ng-controller="DashboardController">
+  <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar">
+        <li class="sidebar-main">
+          <a ng-click="toggleSidebar()">
+            EM POC
+            <span class="menu-icon glyphicon glyphicon-transfer"></span>
+          </a>
+        </li>
+        <li class="sidebar-title"><span>NAVIGATION</span></li>
+        <li class="sidebar-list">
+          <a href="#/">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/Reports">Reports <span class="menu-icon fa fa-bar-chart"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/DeviceGroup">DeviceGroup <span class="menu-icon fa fa-clone"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/DeviceGroup">....</span></a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="col-xs-6">
+          <a href="#/" target="_blank">
+            About
+          </a>
+        </div>
+        <div class="col-xs-6">
+          <a href="#/">
+            Support
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+      <div class="page-content">
+
+        <!-- Header Bar -->
+        <div class="row header">
+          <div class="col-xs-12">
+            <div class="user pull-right">
+              <div class="item dropdown" uib-dropdown>
+                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                  <img src="{{avatorImg}}">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li class="dropdown-header">
+                    {{currentUser.username}}
+                  </li>
+                  <li class="divider"></li>
+                  <li class="link">
+                    <a href="#">
+                      Profile
+                    </a>
+                  </li>
+                  <li class="link">
+                    <a href="#">
+                      Setting
+                    </a>
+                  </li>
+                  <li class="divider"></li>
+                  <li class="link">
+                    <a href="#" ng-click="logout()">
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="page">
+                Dashboard
+              </div>
+              <div class="breadcrumb-links">
+                Home / Dashboard
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Header Bar -->
+
+        <!-- Main Content -->
+        <div>
+          <div class="row alerts-container">
+            <div class="col-xs-12">
+              <uib-alert type="success">Check out! There are some new events occurred in the system!</uib-alert>
+            </div>
+          </div>
+
+          <div class="row">
+          	<div class="col-lg-3 col-md-6 col-xs-12">
+          		<widget>
+          			<widgetbody>
+          				<div class="widget-icon green pull-left">
+          					<i class="fa fa-users"></i>
+          				</div>
+          				<div class="title">80</div>
+          				<div class="comment">Users</div>
+          			</widgetbody>
+          		</widget>
+          	</div>
+          	<div class="col-lg-3 col-md-6 col-xs-12">
+          		<widget>
+          			<widgetbody>
+          				<div class="widget-icon red pull-left">
+          					<i class="fa fa-tasks"></i>
+          				</div>
+          				<div class="title">16</div>
+          				<div class="comment">Servers</div>
+          			</widgetbody>
+          		</widget>
+          	</div>
+          	<div class="col-lg-3 col-md-6 col-xs-12">
+          		<widget>
+          			<widgetbody>
+          				<div class="widget-icon orange pull-left">
+          					<i class="fa fa-sitemap"></i>
+          				</div>
+          				<div class="title">225</div>
+          				<div class="comment">Documents</div>
+          			</widgetbody>
+          		</widget>
+          	</div>
+          	<div class="col-lg-3 col-md-6 col-xs-12">
+          		<widget>
+          			<widgetbody>
+          				<div class="widget-icon blue pull-left">
+          					<i class="fa fa-support"></i>
+          				</div>
+          				<div class="title">62</div>
+          				<div class="comment">Tickets</div>
+          			</widgetbody>
+          		</widget>
+          	</div>
+          </div>
+
+          <div class="row">
+          	<div class="col-lg-6">
+          		<widget>
+                		<widgetheader icon="fa-tasks" title="Servers">
+
+                		</widgetheader>
+                		<widgetbody classes="medium no-padding">
+          				<div class="table-responsive">
+          					<table class="table">
+          						<tbody>
+          							<tr><td>RDVMPC001</td><td>238.103.133.37</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
+          							<tr><td>RDVMPC002</td><td>68.66.63.170</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
+          							<tr><td>RDVMPC003</td><td>76.117.212.33</td><td><span tooltip="Server Down!" class="text-danger"><i class="fa fa-warning"></i></span></td></tr>
+          							<tr><td>RDPHPC001</td><td>91.88.224.5</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
+          							<tr><td>RDESX001</td><td>197.188.15.93</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
+          						</tbody>
+          					</table>
+          				</div>
+          			</widgetbody>
+          		</widget>
+          	</div>
+          	<div class="col-lg-6">
+          		<widget>
+          			<widgetheader icon="fa-users" title="Users">
+          			</widgetheader>
+          			<widgetbody classes="medium no-padding">
+          				<div class="table-responsive">
+          					<table class="table">
+          						<thead>
+          							<tr><th class="text-center">ID</th><th>Username</th><th>Role</th><th>Account</th></tr>
+          						</thead>
+          						<tbody>
+          							<tr><td class="text-center">1</td><td>Joe Bloggs</td><td>Super Admin</td><td>AZ23045</td></tr>
+          							<tr><td class="text-center">2</td><td>Timothy Hernandez</td><td>Admin</td><td>AU24783</td></tr>
+          							<tr><td class="text-center">3</td><td>Joe Bickham</td><td>User</td><td>AM23781</td></tr>
+          						</tbody>
+          					</table>
+                  		</div>
+          			</widgetbody>
+          		</widget>
+          	</div>
+          </div>
+
+
+        </div>
+
+      </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+  </div><!-- End Page Wrapper -->
+</div>
