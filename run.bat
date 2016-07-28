@@ -1,2 +1,2 @@
-set FLASK_APP=eventmonitor.py
+set FLASK_APP = eventmonitor.py
 flask run

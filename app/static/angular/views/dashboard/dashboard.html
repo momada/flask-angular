@@ -6,7 +6,7 @@
       <ul class="sidebar">
         <li class="sidebar-main">
           <a ng-click="toggleSidebar()">
-            EM POC
+            <img src="img/logo.png" alt="Absolute Software" />EM POC
             <span class="menu-icon glyphicon glyphicon-transfer"></span>
           </a>
         </li>
@@ -26,13 +26,10 @@
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-6">
+
           <a href="#/" target="_blank">
-            About
-          </a>
-        </div>
-        <div class="col-xs-6">
-          <a href="#/">
-            Support
+            <i class="fa fa-leaf" style="color:#3A5F0B; font-size:15px"></i> &nbsp;
+            Green Tea
           </a>
         </div>
       </div>
@@ -52,7 +49,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown-header">
-                    {{currentUser.username}}
+                    {{currentUser.fullname}}
                   </li>
                   <li class="divider"></li>
                   <li class="link">
@@ -73,10 +70,24 @@
                   </li>
                 </ul>
               </div>
+              <div class="item dropdown" uib-dropdown ng-if="hasNewEvent" on-toggle="toggled(open)">
+
+                <a href="#" class="dropdown-toggle"  uib-dropdown-toggle>
+                  <!-- <i class="fa fa-bell-o" style="font-size:13px"></i> -->
+                  <div style="margin-top:13px;margin-left:15px" class="notification-icon"></div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li class="dropdown-header">
+                    Event occurred in "{{newEventNotificationMonitorName}}" monitor
+                  </li>
+                </ul>
+              </div>
             </div>
             <div class="meta">
               <div class="page">
                 Dashboard
+                <span style="padding-left:10px;font-size:12px">({{currentUser.fullname}} - {{currentUser.accountId}})
+                </span>
               </div>
               <div class="breadcrumb-links">
                 Home / Dashboard
@@ -90,104 +101,71 @@
         <div>
           <div class="row alerts-container">
             <div class="col-xs-12">
-              <uib-alert type="success">Check out! There are some new events occurred in the system!</uib-alert>
+              <uib-alert type="success">Check out! There are some new events occurred in the system!
+                <a href="javascript:void(0)" class="pull-right" ng-click="OnSettingClick()">
+                  <i class="fa fa-cog" style="font-size:15px"></i>
+                </a>
+              </uib-alert>
             </div>
           </div>
 
           <div class="row">
-          	<div class="col-lg-3 col-md-6 col-xs-12">
+          	<div class="col-lg-3 col-md-6 col-xs-12" ng-repeat="monitor in currentUser.monitors" >
+
           		<widget>
+                <div style="position: absolute; top: 4px;right: 23px;">
+                  <a href="javascript:void(0)" ng-click="OnRefreshClick(monitor.monitorId)">
+                    <i class="fa fa-refresh"></i>
+                  </a>
+                </div>
+                <div style="position: absolute; bottom: 4px;right: 23px;">
+                  <a href="javascript:void(0)" ng-click="OnResetClick(monitor.monitorId)">
+                  <i class="fa fa-trash-o"></i>
+                 </a>
+                </div>
           			<widgetbody>
-          				<div class="widget-icon green pull-left">
-          					<i class="fa fa-users"></i>
+          				<div class="widget-icon {{monitor['icon-color']}} pull-left">
+          					<i class="fa {{monitor.icon}}"></i>
           				</div>
-          				<div class="title">80</div>
-          				<div class="comment">Users</div>
+          				<div class="title">{{monitor.count}}</div>
+          				<div class="comment">{{monitor.name}}</div>
           			</widgetbody>
           		</widget>
           	</div>
-          	<div class="col-lg-3 col-md-6 col-xs-12">
-          		<widget>
-          			<widgetbody>
-          				<div class="widget-icon red pull-left">
-          					<i class="fa fa-tasks"></i>
-          				</div>
-          				<div class="title">16</div>
-          				<div class="comment">Servers</div>
-          			</widgetbody>
-          		</widget>
-          	</div>
-          	<div class="col-lg-3 col-md-6 col-xs-12">
-          		<widget>
-          			<widgetbody>
-          				<div class="widget-icon orange pull-left">
-          					<i class="fa fa-sitemap"></i>
-          				</div>
-          				<div class="title">225</div>
-          				<div class="comment">Documents</div>
-          			</widgetbody>
-          		</widget>
-          	</div>
-          	<div class="col-lg-3 col-md-6 col-xs-12">
-          		<widget>
-          			<widgetbody>
-          				<div class="widget-icon blue pull-left">
-          					<i class="fa fa-support"></i>
-          				</div>
-          				<div class="title">62</div>
-          				<div class="comment">Tickets</div>
-          			</widgetbody>
-          		</widget>
-          	</div>
+
           </div>
-
-          <div class="row">
-          	<div class="col-lg-6">
-          		<widget>
-                		<widgetheader icon="fa-tasks" title="Servers">
-
-                		</widgetheader>
-                		<widgetbody classes="medium no-padding">
-          				<div class="table-responsive">
-          					<table class="table">
-          						<tbody>
-          							<tr><td>RDVMPC001</td><td>238.103.133.37</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-          							<tr><td>RDVMPC002</td><td>68.66.63.170</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-          							<tr><td>RDVMPC003</td><td>76.117.212.33</td><td><span tooltip="Server Down!" class="text-danger"><i class="fa fa-warning"></i></span></td></tr>
-          							<tr><td>RDPHPC001</td><td>91.88.224.5</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-          							<tr><td>RDESX001</td><td>197.188.15.93</td><td><span class="text-success"><i class="fa fa-check"></i></span></td></tr>
-          						</tbody>
-          					</table>
-          				</div>
-          			</widgetbody>
-          		</widget>
-          	</div>
-          	<div class="col-lg-6">
-          		<widget>
-          			<widgetheader icon="fa-users" title="Users">
-          			</widgetheader>
-          			<widgetbody classes="medium no-padding">
-          				<div class="table-responsive">
-          					<table class="table">
-          						<thead>
-          							<tr><th class="text-center">ID</th><th>Username</th><th>Role</th><th>Account</th></tr>
-          						</thead>
-          						<tbody>
-          							<tr><td class="text-center">1</td><td>Joe Bloggs</td><td>Super Admin</td><td>AZ23045</td></tr>
-          							<tr><td class="text-center">2</td><td>Timothy Hernandez</td><td>Admin</td><td>AU24783</td></tr>
-          							<tr><td class="text-center">3</td><td>Joe Bickham</td><td>User</td><td>AM23781</td></tr>
-          						</tbody>
-          					</table>
-                  		</div>
-          			</widgetbody>
-          		</widget>
-          	</div>
-          </div>
-
 
         </div>
 
       </div><!-- End Page Content -->
     </div><!-- End Content Wrapper -->
   </div><!-- End Page Wrapper -->
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="settingModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Event Monitors Setting</h4>
+        </div>
+        <div class="modal-body">
+          <ul class="unstyled">
+            <li ng-repeat="monitor in monitors">
+              <label class="checkbox">
+                <input type="checkbox" ng-model="monitor.selected">
+                <span>{{monitor.name}}</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" ng-click="OnSaveSettingClick()">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+
 </div>

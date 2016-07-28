@@ -1,3 +1,10 @@
+ .notification-icon {
+	 
+		background: url('/img/notification.gif') center no-repeat;
+		height:32px;
+		width:32px;
+ }
+
 
 /****** LOGIN MODAL ******/
 .loginmodal-container {
